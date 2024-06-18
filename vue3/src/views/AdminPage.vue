@@ -79,6 +79,5 @@
 .title {
   text-align: center;
   font-size: 50px;
-  background-color: rgb(42, 42, 51);
 }
 </style>
