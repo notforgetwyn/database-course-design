@@ -1,17 +1,84 @@
 <template>
-    <div class="mb-4">
-   <el-button>Default</el-button>
-   <el-button type="primary">Primary</el-button>
-   <el-button type="success">Success</el-button>
-   <el-button type="info">Info</el-button>
-   <el-button type="warning">Warning</el-button>
-   <el-button type="danger">Danger</el-button>
- </div>
+  <div>
+    <el-container>
+      <el-header class="title">奖学金审核端</el-header>
+      <el-container>
+        <el-aside width="200px">
+          <el-scrollbar>
+            <el-menu :default-openeds="['1', '3']">
+              <el-sub-menu index="1">
+                <template #title>
+                  <el-icon>
+                    <message />
+                  </el-icon>Navigator One
+                </template>
+                <el-menu-item-group>
+                  <template #title>Group 1</template>
+                  <el-menu-item index="1-1">Option 1</el-menu-item>
+                  <el-menu-item index="1-2">Option 2</el-menu-item>
+                </el-menu-item-group>
+                <el-menu-item-group title="Group 2">
+                  <el-menu-item index="1-3">Option 3</el-menu-item>
+                </el-menu-item-group>
+                <el-sub-menu index="1-4">
+                  <template #title>Option4</template>
+                  <el-menu-item index="1-4-1">Option 4-1</el-menu-item>
+                </el-sub-menu>
+              </el-sub-menu>
+              <el-sub-menu index="2">
+                <template #title>
+                  <el-icon>
+                    <icon-menu />
+                  </el-icon>Navigator Two
+                </template>
+                <el-menu-item-group>
+                  <template #title>Group 1</template>
+                  <el-menu-item index="2-1">Option 1</el-menu-item>
+                  <el-menu-item index="2-2">Option 2</el-menu-item>
+                </el-menu-item-group>
+                <el-menu-item-group title="Group 2">
+                  <el-menu-item index="2-3">Option 3</el-menu-item>
+                </el-menu-item-group>
+                <el-sub-menu index="2-4">
+                  <template #title>Option 4</template>
+                  <el-menu-item index="2-4-1">Option 4-1</el-menu-item>
+                </el-sub-menu>
+              </el-sub-menu>
+              <el-sub-menu index="3">
+                <template #title>
+                  <el-icon>
+                    <setting />
+                  </el-icon>Navigator Three
+                </template>
+                <el-menu-item-group>
+                  <template #title>Group 1</template>
+                  <el-menu-item index="3-1">Option 1</el-menu-item>
+                  <el-menu-item index="3-2">Option 2</el-menu-item>
+                </el-menu-item-group>
+                <el-menu-item-group title="Group 2">
+                  <el-menu-item index="3-3">Option 3</el-menu-item>
+                </el-menu-item-group>
+                <el-sub-menu index="3-4">
+                  <template #title>Option 4</template>
+                  <el-menu-item index="3-4-1">Option 4-1</el-menu-item>
+                </el-sub-menu>
+              </el-sub-menu>
+            </el-menu>
+          </el-scrollbar>
+        </el-aside>
+        <el-main></el-main>
+      </el-container>
+    </el-container>
+  </div>
 </template>
 
 <script lang="ts" setup>
 
 </script>
 <style>
-
+.title {
+  text-align: center;
+  font-size: 50px;
+  background-color: rgb(42, 42, 51);
+}
 </style>

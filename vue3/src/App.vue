@@ -1,10 +1,10 @@
 <template>
- <LogPage></LogPage>
+ <AdminPage></AdminPage>
 </template>
 <script>
-import LogPage from './views/LogPage.vue'
+import AdminPage from './views/AdminPage.vue';
 export default{
-  components:{LogPage}
+  components:{AdminPage}
 }
 </script>
 <style>

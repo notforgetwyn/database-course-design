@@ -27,7 +27,10 @@
   word-spacing: 10px;
 }
 
-.text {}
+.text {
+}
 
-.button {}
+.button {
+
+}
 </style>
