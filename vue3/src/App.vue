@@ -1,10 +1,10 @@
 <template>
- <TextCo></TextCo>
+ <LogPage></LogPage>
 </template>
 <script>
-import TextCo from './views/TextCo.vue'
+import LogPage from './views/LogPage.vue'
 export default{
-  components:{TextCo}
+  components:{LogPage}
 }
 </script>
 <style>
