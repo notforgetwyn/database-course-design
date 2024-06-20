@@ -1,83 +1,88 @@
 <template>
-  <div>
+  <el-container class="layout-container-demo" style="height: 500px">
+    <el-header class="el-header">
+      <div style="color: #F8FCFB;  letter-spacing: 10px;vertical-align: middle;">
+        奖学金系统
+      </div>
+    </el-header>
+
+
     <el-container>
-      <el-header class="title">奖学金审核端</el-header>
-      <el-container>
-        <el-aside width="200px">
-          <el-scrollbar>
-            <el-menu :default-openeds="['1', '3']">
-              <el-sub-menu index="1">
-                <template #title>
-                  <el-icon>
-                    <message />
-                  </el-icon>Navigator One
-                </template>
-                <el-menu-item-group>
-                  <template #title>Group 1</template>
-                  <el-menu-item index="1-1">Option 1</el-menu-item>
-                  <el-menu-item index="1-2">Option 2</el-menu-item>
-                </el-menu-item-group>
-                <el-menu-item-group title="Group 2">
-                  <el-menu-item index="1-3">Option 3</el-menu-item>
-                </el-menu-item-group>
-                <el-sub-menu index="1-4">
-                  <template #title>Option4</template>
-                  <el-menu-item index="1-4-1">Option 4-1</el-menu-item>
-                </el-sub-menu>
-              </el-sub-menu>
-              <el-sub-menu index="2">
-                <template #title>
-                  <el-icon>
-                    <icon-menu />
-                  </el-icon>Navigator Two
-                </template>
-                <el-menu-item-group>
-                  <template #title>Group 1</template>
-                  <el-menu-item index="2-1">Option 1</el-menu-item>
-                  <el-menu-item index="2-2">Option 2</el-menu-item>
-                </el-menu-item-group>
-                <el-menu-item-group title="Group 2">
-                  <el-menu-item index="2-3">Option 3</el-menu-item>
-                </el-menu-item-group>
-                <el-sub-menu index="2-4">
-                  <template #title>Option 4</template>
-                  <el-menu-item index="2-4-1">Option 4-1</el-menu-item>
-                </el-sub-menu>
-              </el-sub-menu>
-              <el-sub-menu index="3">
-                <template #title>
-                  <el-icon>
-                    <setting />
-                  </el-icon>Navigator Three
-                </template>
-                <el-menu-item-group>
-                  <template #title>Group 1</template>
-                  <el-menu-item index="3-1">Option 1</el-menu-item>
-                  <el-menu-item index="3-2">Option 2</el-menu-item>
-                </el-menu-item-group>
-                <el-menu-item-group title="Group 2">
-                  <el-menu-item index="3-3">Option 3</el-menu-item>
-                </el-menu-item-group>
-                <el-sub-menu index="3-4">
-                  <template #title>Option 4</template>
-                  <el-menu-item index="3-4-1">Option 4-1</el-menu-item>
-                </el-sub-menu>
-              </el-sub-menu>
-            </el-menu>
-          </el-scrollbar>
-        </el-aside>
-        <el-main></el-main>
-      </el-container>
+      <el-aside width="200px">
+        <el-menu class="el-menu-vertical-demo" active-text-color="#ffd04b" background-color="#545c64" text-color="#fff">
+          <el-sub-menu index="1">
+            <template #title>
+              <el-icon>
+                <icon-menu />
+              </el-icon>
+              <span>个人中心</span>
+            </template>
+            <el-menu-item index="1-1">
+              test1
+            </el-menu-item>
+          </el-sub-menu>
+
+          <el-sub-menu index="2">
+            <template #title>
+              <el-icon>
+                <icon-menu />
+              </el-icon>
+              <span>学生管理</span>
+            </template>
+            <el-menu-item index="2-1">
+              test1
+            </el-menu-item>
+          </el-sub-menu>
+
+          <el-sub-menu index="3">
+            <template #title>
+              <el-icon>
+                <icon-menu />
+              </el-icon>
+              <span>奖学金类型管理</span>
+            </template>
+            <el-menu-item index="3-1">
+              test1
+            </el-menu-item>
+          </el-sub-menu>
+
+          <el-sub-menu index="4">
+            <template #title>
+              <el-icon>
+                <icon-menu />
+              </el-icon>
+              <span>奖学金管理</span>
+            </template>
+            <el-menu-item index="4-1">
+              test1
+            </el-menu-item>
+          </el-sub-menu>
+
+        </el-menu>
+      </el-aside>
+
+
+
+      <el-main>Main</el-main>
     </el-container>
-  </div>
+  </el-container>
 </template>
 
 <script lang="ts" setup>
 
 </script>
 <style>
-.title {
-  text-align: center;
-  font-size: 50px;
+.el-header {
+  position: relative;
+  background-color: #373D41;
+  font-size: 30px;
+}
+
+.layout-container-demo .el-aside {
+  background: #515a62;
+}
+
+.layout-container-demo .el-main {
+  padding: 0;
 }
 </style>
