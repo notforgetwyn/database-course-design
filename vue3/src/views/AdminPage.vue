@@ -10,7 +10,7 @@
       <el-aside width="200px">
         <el-menu class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff" active-text-color="#409eff">
           <el-sub-menu index="1">
-            <template>
+            <template #title>
               <el-icon>
                 <icon-menu />
               </el-icon>
@@ -22,7 +22,7 @@
           </el-sub-menu>
 
           <el-sub-menu index="2">
-            <template>
+            <template #title>
               <el-icon>
                 <icon-menu />
               </el-icon>
@@ -34,7 +34,7 @@
           </el-sub-menu>
 
           <el-sub-menu index="3">
-            <template>
+            <template #title>
               <el-icon>
                 <icon-menu />
               </el-icon>
@@ -46,7 +46,7 @@
           </el-sub-menu>
 
           <el-sub-menu index="4">
-            <template>
+            <template #title>
               <el-icon>
                 <icon-menu />
               </el-icon>
