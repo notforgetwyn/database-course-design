@@ -16,4 +16,9 @@ public class StudentSever implements StudentSeverInter {
     public void insert(StudentPojo requestData) {
        studentdao.InsertStu(requestData.getCno(),requestData.getSno(),requestData.getGrade());
     }
+
+    @Override
+    public StudentPojo select() {
+      return studentdao.selectStudent();
+    }
 }

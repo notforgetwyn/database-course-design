@@ -62,7 +62,7 @@
 
 
 
-      <el-main>
+      <el-main id="#app">
         <el-scrollbar>
           <el-table :data="tableData">
             <el-table-column prop="date" label="Date" width="140" />
@@ -77,12 +77,18 @@
 
 <script scope setup>
 import { ref } from 'vue'
-const item = {
-  date: '0',
-  name: 'null',
-  address: '0',
+import axios from "axios"
+new Vue({
+  el: "#app"
+  data: {
+    tableData: []
+  }
+})
+function request() {
+  axios.post("www.localhost:8080/student").then((result) => {
+    tableData = result.data;
+  })
 }
-const tableData = ref(Array.from({ length: 20 }).fill(item))
 </script>
 <style>
 .el-header {
