@@ -65,9 +65,9 @@
       <el-main id="#app">
         <el-scrollbar>
           <el-table :data="tableData">
-            <el-table-column prop="date" label="Date" width="140" />
-            <el-table-column prop="name" label="Name" width="120" />
-            <el-table-column prop="address" label="Address" />
+            <el-table-column prop="sno" label="Date" width="140" />
+            <el-table-column prop="cno" label="Name" width="120" />
+            <el-table-column prop="grade" label="Address" />
           </el-table>
         </el-scrollbar>
       </el-main>
@@ -76,19 +76,30 @@
 </template>
 
 <script scope setup>
-import { ref } from 'vue'
+import { createApp } from 'vue'
 import axios from "axios"
-new Vue({
-  el: "#app"
-  data: {
-    tableData: []
+createApp({
+  el: "#app",
+  data() {
+    return {
+      tableData: [{
+        sno: 1,
+        cno: 2,
+        grade: 3
+      }, {
+        sno: 2,
+        cno: 2,
+        grade: 3
+      }]
+    }
+  },
+  mounted() {
+    new axios.post("www.localhost:8080/student").then((result) => {
+      console.log(result.data.data);
+    });
   }
 })
-function request() {
-  axios.post("www.localhost:8080/student").then((result) => {
-    tableData = result.data;
-  })
-}
+
 </script>
 <style>
 .el-header {
