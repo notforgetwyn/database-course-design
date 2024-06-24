@@ -4,7 +4,7 @@
       <div class="logintext">
         <h2>后台登录</h2>
       </div>
-      <div class="formdata">
+      <div class=" formdata">
         <el-form v-model="form" :rules="rules">
           <el-form-item prop="userName">
             <el-input v-model="form.userName" clearable placeholder="请输入账号"></el-input>
@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="butt">
-        <el-button type="primary" :plain="true">登录</el-button>
+        <el-button type="primary" :plain="true"><router-link to="/StuPage">登录</router-link></el-button>
 
       </div>
     </div>

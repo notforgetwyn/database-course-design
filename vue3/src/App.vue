@@ -1,10 +1,6 @@
 <template>
-  <LogPage></LogPage>
+  <router-view></router-view>
 </template>
 <script>
-import LogPage from './views/LogPage.vue';
-export default {
-  components: { LogPage }
-}
 </script>
 <style></style>
