@@ -7,6 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 public interface StudentSeverInter {
-  public void insert(StudentPojo requestData);
-  public StudentPojo select();
+  public void Select(StudentPojo requestData);
+  public StudentPojo[] SelectAll();
 }

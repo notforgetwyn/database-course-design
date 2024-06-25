@@ -11,9 +11,10 @@ public class Result {
     private int Code;
     private String Message;
     private Object Data;
+    private Object Data_array[];
     public Result Success(Object result)
     {
-        return new Result(1,"success",result);
+        return new Result(1,"success",result,null);
     }
 
 }

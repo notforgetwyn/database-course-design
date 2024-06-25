@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 @Mapper
 public interface StudentDao {
-    @Insert("insert into sc values(#{sno},#{cno},#{grade})")
-    void InsertStu(String sno, String cno, int grade);
-@Select("select *from sc where cno=\"01\" and grade=81;")
-    StudentPojo selectStudent();
+@Select("select *from sc where sno=#{sno}  ;")
+    StudentPojo Select(String sno,String cno,int grade);
+@Select("select *from sc ;")
+    StudentPojo[] SelectAll();
 }

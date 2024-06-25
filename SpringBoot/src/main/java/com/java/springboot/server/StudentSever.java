@@ -13,12 +13,12 @@ public class StudentSever implements StudentSeverInter {
     @Autowired
     StudentDao studentdao;
     @Override
-    public void insert(StudentPojo requestData) {
-       studentdao.InsertStu(requestData.getCno(),requestData.getSno(),requestData.getGrade());
+    public void Select(StudentPojo requestData) {
+       studentdao.Select(requestData.getCno(),requestData.getSno(),requestData.getGrade());
     }
 
     @Override
-    public StudentPojo select() {
-      return studentdao.selectStudent();
+    public StudentPojo[] SelectAll() {
+      return studentdao.SelectAll();
     }
 }
