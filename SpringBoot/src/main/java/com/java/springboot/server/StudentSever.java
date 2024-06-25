@@ -1,24 +1,24 @@
 package com.java.springboot.server;
 
-import com.java.springboot.Controller.StudentController;
-import com.java.springboot.dao.StudentDao;
+import com.java.springboot.Controller.NoticeController;
+import com.java.springboot.dao.NoticeDao;
 import com.java.springboot.pojo.Result;
-import com.java.springboot.pojo.StudentPojo;
-import com.java.springboot.server.Interface.StudentSeverInter;
+import com.java.springboot.pojo.Notice;
+import com.java.springboot.server.Interface.NoticeSeverInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class StudentSever implements StudentSeverInter {
+public class NoticeSever implements NoticeSeverInter {
     @Autowired
-    StudentDao studentdao;
+    NoticeDao Noticedao;
     @Override
-    public void Select(StudentPojo requestData) {
-       studentdao.Select(requestData.getCno(),requestData.getSno(),requestData.getGrade());
+    public void Select(Notice requestData) {
+       Noticedao.Select(requestData.getCno(),requestData.getSno(),requestData.getGrade());
     }
 
     @Override
-    public StudentPojo[] SelectAll() {
-      return studentdao.SelectAll();
+    public Notice[] SelectAll() {
+      return Noticedao.SelectAll();
     }
 }

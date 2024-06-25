@@ -3,13 +3,15 @@
     <div class="login-container">
       <div class="login-header">奖学金管理系统</div>
       <el-form :model="form" :rules="rules" ref="loginForm" label-width="50px">
-        <el-form-item class="login-input" label="学 号" prop="username">
+        <el-form-item class="login-input" label="学号" prop="username">
           <el-input v-model="form.username" placeholder=""></el-input>
         </el-form-item>
-        <el-form-item class="login-input" label="密 码" prop="password">
+        <el-form-item class="login-input" label="密码" prop="password">
           <el-input type="password" v-model="form.password" placeholder=""></el-input>
         </el-form-item>
         <el-form-item>
+          <el-button class="login-button" type="primary"><router-link to="/AdminPage"
+              class='login-button1'>登录</router-link></el-button>
           <el-button class="login-button" type="primary"><router-link to="/AdminPage"
               class='login-button1'>登录</router-link></el-button>
         </el-form-item>
@@ -29,6 +31,14 @@ export default {
         passwd: "",
       },
       checked: true,
+      rules: {
+        username: [
+          { required: true, message: "请输入学号", trigger: "blur" }
+        ],
+        password: [
+          { required: true, message: "请输入密码", trigger: "blur" }
+        ]
+      }
     };
   }
 }
@@ -78,8 +88,7 @@ export default {
 }
 
 .login-button {
-  width:
-    100%;
+  width: 25%;
   padding: 0.8rem;
   background: #007BFF;
   border: none;
@@ -91,7 +100,7 @@ export default {
 .login-button1 {
   text-align: center;
   color: #333;
-  font-size: 1.5rem;
+  font-size: 1rem;
   text-decoration: none;
 }
 

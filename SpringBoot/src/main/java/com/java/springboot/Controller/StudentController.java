@@ -1,22 +1,22 @@
 package com.java.springboot.Controller;
 
 import com.java.springboot.pojo.Result;
-import com.java.springboot.pojo.StudentPojo;
-import com.java.springboot.server.StudentSever;
+import com.java.springboot.pojo.Notice;
+import com.java.springboot.server.NoticeSever;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class StudentController {
+public class NoticeController {
     @Autowired
-    StudentSever studentsever;
-@GetMapping("/student")
-    public Result Selete(StudentPojo requestData) {
-    studentsever.Select(requestData);
+    NoticeSever Noticesever;
+@GetMapping("/Notice")
+    public Result Selete(Notice requestData) {
+    Noticesever.Select(requestData);
 return new Result().Success(1);
 }
-@PostMapping("/student")
+@PostMapping("/Notice")
 public Result SeleteAll() {
-    return new Result().Success(studentsever.SelectAll());
+    return new Result().Success(Noticesever.SelectAll());
 }
 }
