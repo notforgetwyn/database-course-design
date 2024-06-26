@@ -9,10 +9,10 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Notice {
+public class NoticeData {
     private int noticeId;
     private String title;
-    private String content;
+    private String context;
     private LocalDateTime publishDate;
     private int viewCount;
 }
