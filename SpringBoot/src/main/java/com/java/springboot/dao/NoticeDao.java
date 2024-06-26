@@ -1,16 +1,18 @@
 package com.java.springboot.dao;
 
-import com.java.springboot.pojo.Result;
-import com.java.springboot.pojo.Notice;
+import com.java.springboot.Data.NoticeData;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.stereotype.Service;
 
 @Mapper
 public interface NoticeDao {
-@Select("select *from sc where sno=#{sno}  ;")
-    Notice Select(String sno,String cno,int grade);
-@Select("select *from sc ;")
-    Notice[] SelectAll();
+@Select("select  notice_id,title,content,publish_date,publish_date, view_count,attachment from notices"  )
+NoticeData[] GetDataAll();
+
+@Select("select notice_id,title,content,publish_date,publish_date,view_count  from notices where notice_id=1"  )
+NoticeData GetData();
+
+@Insert("")
+    void InsertNotice(NoticeData notice);
 }

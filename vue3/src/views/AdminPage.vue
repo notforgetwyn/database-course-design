@@ -75,13 +75,13 @@
           </el-form>
 
           <el-table :data="tableData" border height="480" highlight-current-row>
-            <el-table-column prop="sno" label="公告通知ID" width="250"></el-table-column>
-            <el-table-column prop="cno" label="公告标题" width="250"></el-table-column>
-            <el-table-column prop="grade" label="公告内容" width="250"></el-table-column>
-            <el-table-column prop="sno" label="发布时间" width="250"></el-table-column>
-            <el-table-column prop="grade" label="附件" width="250"></el-table-column>
-            <el-table-column prop="cno" label="查看次数" width="250"></el-table-column>
-            <el-table-column label="操作">
+            <el-table-column prop="notice_id" label="公告通知ID" width="100"></el-table-column>
+            <el-table-column prop="title" label="公告标题" width="250"></el-table-column>
+            <el-table-column prop="content" label="公告内容" width="250"></el-table-column>
+            <el-table-column prop="publish_date" label="发布时间" width="250"></el-table-column>
+            <el-table-column prop="attachment" label="附件" width="250"></el-table-column>
+            <el-table-column prop="view_count" label="查看次数" width="100"></el-table-column>
+            <el-table-column label="操作" width="250">
               <el-button type="primary" size="">编辑</el-button>
               <el-button type="danger" size="">删除</el-button>
             </el-table-column>
@@ -110,24 +110,19 @@ export default {
   methods: {
     onSubmit() {
       new axios({
-        method: 'post',
-        url: 'http://www.localhost:8080/student',
-        data: {
-          name: this.searchForm.name,
-          gender: this.searchForm.gender,
-          entrydate: this.searchForm.entrydate,
-        }
+        method: 'get',
+        url: 'http://www.localhost:8080/Notice',
       }).then((result) => {
         this.tableData = result.data.data
-        console.log(this.tableData)
       }).catch((err) => {
         console.log(err)
       })
     }
   },
   mounted() {
-    new axios({ method: 'post', url: 'http://www.localhost:8080/student', }).then((result) => {
+    new axios({ method: 'get', url: 'http://www.localhost:8080/Notice', }).then((result) => {
       console.log(result.data.data)
+      this.tableData = result.data.data
     }).catch((err) => {
       console.log(err)
     })

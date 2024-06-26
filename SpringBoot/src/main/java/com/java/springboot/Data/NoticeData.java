@@ -1,5 +1,6 @@
-package com.java.springboot.pojo;
+package com.java.springboot.Data;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,9 +11,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class NoticeData {
-    private int noticeId;
+    private int notice_id;
     private String title;
-    private String context;
-    private LocalDateTime publishDate;
-    private int viewCount;
+    private String content;
+    private LocalDateTime publish_date;
+    private JsonNode attachment;
+    private int view_count;
 }

@@ -1,4 +1,4 @@
-package com.java.springboot.pojo;
+package com.java.springboot.Data;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
