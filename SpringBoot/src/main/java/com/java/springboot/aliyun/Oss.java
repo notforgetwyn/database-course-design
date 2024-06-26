@@ -7,8 +7,6 @@ import com.aliyun.oss.OSSException;
 import com.aliyun.oss.common.auth.CredentialsProviderFactory;
 import com.aliyun.oss.common.auth.EnvironmentVariableCredentialsProvider;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.UUID;
 

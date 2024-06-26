@@ -1,6 +1,6 @@
 package com.java.springboot.Data;
 
-import com.fasterxml.jackson.databind.JsonNode;
+import cn.hutool.json.JSONObject;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +15,6 @@ public class NoticeData {
     private String title;
     private String content;
     private LocalDateTime publish_date;
-    private JsonNode attachment;
+    private String attachment;
     private int view_count;
 }

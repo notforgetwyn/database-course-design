@@ -12,122 +12,58 @@
       </el-header>
       <el-container>
         <el-aside width="200px">
-          <el-menu background-color="#545c64" text-color="#fff" active-text-color="#409eff">
-            <el-menu-item index="1">
-              <template #title>
-                <el-icon>
-                  <location />
-                </el-icon>
-                <span>公告通知</span>
-              </template>
-            </el-menu-item>
-            <el-menu-item index="2">
-              <template #title><el-icon>
-                  <Menu />
-                </el-icon>
-                <span>分类信息</span>
-              </template>
-            </el-menu-item>
-            <el-menu-item index="3">
-              <template #title> <el-icon>
-                  <document />
-                </el-icon>
-                <span>成绩管理</span>
-              </template>
-            </el-menu-item>
-            <el-sub-menu index="4">
+          <el-menu background-color="#373d41" text-color="#fff" active-text-color="#409eff">
+            <router-link to="/AdminPage/">
+              <el-menu-item index="1">
+                <template #title>
+                  <el-icon>
+                    <location />
+                  </el-icon>
+                  <span>公告通知</span>
+                </template>
+              </el-menu-item>
+            </router-link>
+            <router-link to="/AdminPage/StudentGrade">
+              <el-menu-item index="2">
+                <template #title> <el-icon>
+                    <document />
+                  </el-icon>
+                  <span>成绩管理</span>
+                </template>
+              </el-menu-item>
+            </router-link>
+            <el-sub-menu index="3">
               <template #title> <el-icon>
                   <setting />
                 </el-icon>
                 <span>用户管理</span>
               </template>
-              <el-menu-item index="4-1">教师用户</el-menu-item>
-              <el-menu-item index="4-2">学生用户</el-menu-item>
+              <router-link to="/AdminPage/TeacherData"><el-menu-item index="3-1">教师用户</el-menu-item></router-link>
+              <router-link to="/AdminPage/StudentData"><el-menu-item index="3-2">学生用户</el-menu-item></router-link>
             </el-sub-menu>
-            <el-sub-menu index="5">
+            <el-sub-menu index="4">
               <template #title> <el-icon>
                   <setting />
                 </el-icon>
                 <span>奖学金管理</span>
               </template>
-              <el-menu-item index="5-1">奖学金申请名单</el-menu-item>
-              <el-menu-item index="5-2">奖学金复审名单</el-menu-item>
+              <router-link to="/AdminPage/ScholarshipApp"> <el-menu-item
+                  index="4-1">奖学金申请名单</el-menu-item></router-link>
+              <router-link to="/AdminPage/ScholarshipList"><el-menu-item
+                  index="4-2">奖学金复审名单</el-menu-item></router-link>
             </el-sub-menu>
           </el-menu>
-
         </el-aside>
         <el-main>
-          <el-form :inline="true" :model="searchForm">
-            <el-form-item label="标题">
-              <el-input v-model="searchForm.name" placeholder="" style="width:150px;"></el-input>
-            </el-form-item>
-            <el-form-item label="内容">
-              <el-input v-model="searchForm.context" placeholder="" style="width:150px;"></el-input>
-            </el-form-item>
-            <el-form-item label="日期">
-              <el-date-picker v-model="searchForm.entrydate" type="daterange" range-separator="至"
-                start-placeholder="开始日期" end-placeholder="结束日期">
-              </el-date-picker>
-            </el-form-item>
-            <el-form-item>
-              <el-button type="primary" @click="onSubmit">查询</el-button>
-            </el-form-item>
-          </el-form>
-
-          <el-table :data="tableData" border height="480" highlight-current-row>
-            <el-table-column prop="notice_id" label="公告通知ID" width="100"></el-table-column>
-            <el-table-column prop="title" label="公告标题" width="250"></el-table-column>
-            <el-table-column prop="content" label="公告内容" width="250"></el-table-column>
-            <el-table-column prop="publish_date" label="发布时间" width="250"></el-table-column>
-            <el-table-column prop="attachment" label="附件" width="250"></el-table-column>
-            <el-table-column prop="view_count" label="查看次数" width="100"></el-table-column>
-            <el-table-column label="操作" width="250">
-              <el-button type="primary" size="">编辑</el-button>
-              <el-button type="danger" size="">删除</el-button>
-            </el-table-column>
-          </el-table>
-          <el-pagination background :pager-count="15" layout="prev, pager, next, jumper" :total="1000" />
+          <router-view></router-view>
         </el-main>
       </el-container>
     </el-container>
   </div>
 </template>
-
 <script>
-import axios from 'axios';
-export default {
-  data() {
-    return {
-      username: "123",
-      tableData: [],
-      searchForm: {
-        name: "",
-        gender: "",
-        entrydate: []
-      }
-    };
-  },
-  methods: {
-    onSubmit() {
-      new axios({
-        method: 'get',
-        url: 'http://www.localhost:8080/Notice',
-      }).then((result) => {
-        this.tableData = result.data.data
-      }).catch((err) => {
-        console.log(err)
-      })
-    }
-  },
-  mounted() {
-    new axios({ method: 'get', url: 'http://www.localhost:8080/Notice', }).then((result) => {
-      console.log(result.data.data)
-      this.tableData = result.data.data
-    }).catch((err) => {
-      console.log(err)
-    })
-  }
-}
+
+
 </script>
 <style scoped>
 .el-header {
@@ -142,6 +78,6 @@ export default {
 
 .el-aside {
   background-size: "100%";
-  background-color: #545c64;
+  background-color: #373d41;
 }
 </style>

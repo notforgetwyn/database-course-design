@@ -10,10 +10,8 @@
           <el-input type="password" v-model="form.password" placeholder=""></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button class="login-button" type="primary"><router-link to="/AdminPage"
-              class='login-button1'>登录</router-link></el-button>
-          <el-button class="login-button" type="primary"><router-link to="/AdminPage"
-              class='login-button1'>登录</router-link></el-button>
+          <router-link to="/AdminPage" class='login-button1'> <el-button class="login-button"
+              type="primary">登录</el-button></router-link>
         </el-form-item>
       </el-form>
     </div>
@@ -43,16 +41,9 @@ export default {
   }
 }
 </script>
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
-
+<style scoped>
 .loginpage {
-  background-image: url(" https://img.zcool.cn/community/0164505a322567a80121db803d71f8.jpg@3000w_1l_2o_100sh.jpg");
+  background-image: url("../assets/background-img.jpg");
   background-size: 100% 100%;
   display: flex;
   justify-content: center;
