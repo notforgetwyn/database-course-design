@@ -43,14 +43,7 @@ export default {
   }
 }
 </script>
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
-
+<style scoped>
 .loginpage {
   background-image: url(" https://img.zcool.cn/community/0164505a322567a80121db803d71f8.jpg@3000w_1l_2o_100sh.jpg");
   background-size: 100% 100%;
