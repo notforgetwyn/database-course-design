@@ -55,10 +55,26 @@
 </template>
 
 <script>
+<script>
 
 </script>
 <style scoped>
 .el-header {
+  background-color: #373d41;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 0%;
+  align-items: center;
+  color: #fff;
+  font-size: 30px;
+}
+
+.el-aside {
+  background-size: "100%";
+  background-color: #373d41;
+}
+
+<style scoped>.el-header {
   background-color: #373d41;
   display: flex;
   justify-content: space-between;
