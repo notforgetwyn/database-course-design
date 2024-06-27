@@ -6,6 +6,4 @@ import com.java.springboot.server.Interface.AdminSever;
 import org.springframework.stereotype.Service;
 @Service
 public class AdminSeverimp extends ServiceImpl<AdminDao, AdminData> implements AdminSever {
-
 }
-
