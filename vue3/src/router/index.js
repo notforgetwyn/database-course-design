@@ -106,7 +106,7 @@ const routes = [
   },
   {
     path: "/",
-    redirect: "/AdminPage",
+    redirect: "/StuPage",
   },
 ];
 

@@ -1,23 +1,11 @@
 package com.java.springboot.server;
 
-import cn.hutool.json.JSONArray;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.java.springboot.Data.ScholarshipListData;
-import com.java.springboot.aliyun.Oss;
 import com.java.springboot.dao.ScholarshipListDao;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.java.springboot.server.Interface.ScholarshipListSever;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ScholarshipListSeverimp  {
-    @Autowired
-    ScholarshipListDao ScholarshiplistDao;
-    Oss oss;
-    public ScholarshipListData[ ] GetDataAll() {
-        return ScholarshiplistDao. GetDataAll();
-    }
-    public ScholarshipListData GetData() {
-
-      return ScholarshiplistDao.GetData();
-    }
-
+public class ScholarshipListSeverimp extends ServiceImpl<ScholarshipListDao, ScholarshipListData> implements ScholarshipListSever {
 }
