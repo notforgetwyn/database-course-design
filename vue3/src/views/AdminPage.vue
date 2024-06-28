@@ -23,15 +23,6 @@
                 </template>
               </el-menu-item>
             </router-link>
-            <router-link to="/AdminPage/StudentGrade">
-              <el-menu-item index="2">
-                <template #title> <el-icon>
-                    <document />
-                  </el-icon>
-                  <span>成绩管理</span>
-                </template>
-              </el-menu-item>
-            </router-link>
             <el-sub-menu index="3">
               <template #title> <el-icon>
                   <setting />
@@ -47,10 +38,9 @@
                 </el-icon>
                 <span>奖学金管理</span>
               </template>
-              <router-link to="/AdminPage/ScholarshipApp"> <el-menu-item
-                  index="4-1">奖学金申请名单</el-menu-item></router-link>
-              <router-link to="/AdminPage/ScholarshipList"><el-menu-item
-                  index="4-2">奖学金复审名单</el-menu-item></router-link>
+              <router-link to="/AdminPage/ScholarshipList"><el-menu-item index="4-2">奖学金申请</el-menu-item></router-link>
+              <router-link to="/AdminPage/TotalScore"><el-menu-item index="4-3">学生总成绩</el-menu-item></router-link>
+              <router-link to="/AdminPage/AddScore"> <el-menu-item index="4-1">加分申请</el-menu-item></router-link>
             </el-sub-menu>
           </el-menu>
         </el-aside>

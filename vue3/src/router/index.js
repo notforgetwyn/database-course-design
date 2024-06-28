@@ -15,8 +15,8 @@ const routes = [
         component: () => import("../components/NoticeComp.vue"),
       },
       {
-        path: "StudentGrade",
-        component: () => import("../components/AdminPagecomp/StudentGrade.vue"),
+        path: "TotalScore",
+        component: () => import("../components/AdminPagecomp/TotalScore.vue"),
       },
       {
         path: "StudentData",
@@ -32,9 +32,8 @@ const routes = [
           import("../components/AdminPagecomp/ScholarshipList.vue"),
       },
       {
-        path: "ScholarshipApp",
-        component: () =>
-          import("../components/AdminPagecomp/ScholarshipApp.vue"),
+        path: "AddScore",
+        component: () => import("../components/AdminPagecomp/AddScore.vue"),
       },
     ],
   },
@@ -48,26 +47,20 @@ const routes = [
         component: () => import("../components/NoticeComp.vue"),
       },
       {
-        path: "StudentGrade",
-        component: () => import("../components/AdminPagecomp/StudentGrade.vue"),
+        path: "AddScore",
+        component: () => import("../components/StuPageComp/AddScore.vue"),
       },
       {
         path: "StudentData",
         component: () => import("../components/StuPageComp/StudentData.vue"),
       },
       {
-        path: "TeacherData",
-        component: () => import("../components/AdminPagecomp/TeacherData.vue"),
+        path: "StudentApp",
+        component: () => import("../components/StuPageComp/StudentApp.vue"),
       },
       {
-        path: "ScholarshipList",
-        component: () =>
-          import("../components/AdminPagecomp/ScholarshipList.vue"),
-      },
-      {
-        path: "ScholarshipApp",
-        component: () =>
-          import("../components/AdminPagecomp/ScholarshipApp.vue"),
+        path: "studentScore",
+        component: () => import("../components/StuPageComp/studentScore.vue"),
       },
     ],
   },
@@ -81,26 +74,18 @@ const routes = [
         component: () => import("../components/NoticeComp.vue"),
       },
       {
-        path: "StudentGrade",
-        component: () => import("../components/AdminPagecomp/StudentGrade.vue"),
+        path: "ScholarshipApp",
+        component: () =>
+          import("../components/teacherPageComp/ScholarshipApp.vue"),
       },
       {
-        path: "StudentData",
-        component: () => import("../components/AdminPagecomp/StudentData.vue"),
+        path: "StudentApp",
+        component: () => import("../components/teacherPageComp/StudentApp.vue"),
       },
       {
         path: "TeacherData",
-        component: () => import("../components/AdminPagecomp/TeacherData.vue"),
-      },
-      {
-        path: "ScholarshipList",
         component: () =>
-          import("../components/AdminPagecomp/ScholarshipList.vue"),
-      },
-      {
-        path: "ScholarshipApp",
-        component: () =>
-          import("../components/AdminPagecomp/ScholarshipApp.vue"),
+          import("../components/teacherPageComp/TeacherData.vue"),
       },
     ],
   },
@@ -109,13 +94,6 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
-});
-router.beforeEach((to, from, next) => {
-  if (to.path == "/LogPage") return next();
-  const token = localStorage.getItem("token");
-  const ID = localStorage.getItem("id");
-  if (!token && !ID) return next("/LogPage");
-  next();
 });
 
 export default router;

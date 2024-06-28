@@ -13,7 +13,7 @@
       <el-container>
         <el-aside width="200px">
           <el-menu background-color="#373d41" text-color="#fff" active-text-color="#409eff">
-            <router-link to="/AdminPage/">
+            <router-link to="/teacherPageComp/">
               <el-menu-item index="1">
                 <template #title>
                   <el-icon>
@@ -23,7 +23,7 @@
                 </template>
               </el-menu-item>
             </router-link>
-            <router-link to="/AdminPage/StudentGrade">
+            <router-link to="/teacherPageComp/TeacherData">
               <el-menu-item index="2">
                 <template #title> <el-icon>
                     <document />
@@ -32,24 +32,16 @@
                 </template>
               </el-menu-item>
             </router-link>
-            <el-sub-menu index="3">
-              <template #title> <el-icon>
-                  <setting />
-                </el-icon>
-                <span>用户管理</span>
-              </template>
-              <router-link to="/AdminPage/StudentData"><el-menu-item index="3-2">学生用户</el-menu-item></router-link>
-            </el-sub-menu>
             <el-sub-menu index="4">
               <template #title> <el-icon>
                   <setting />
                 </el-icon>
                 <span>奖学金管理</span>
               </template>
-              <router-link to="/AdminPage/ScholarshipList"><el-menu-item
-                  index="4-1">奖学金申请名单</el-menu-item></router-link>
-              <router-link to="/AdminPage/ScholarshipApp"> <el-menu-item
-                  index="4-2">奖学金复审名单</el-menu-item></router-link>
+              <router-link to="/teacherPageComp/ScholarshipApp"><el-menu-item
+                  index="4-1">奖学金项目</el-menu-item></router-link>
+              <router-link to="/teacherPageComp/StudentApp"> <el-menu-item
+                  index="4-2">奖学金名单</el-menu-item></router-link>
             </el-sub-menu>
           </el-menu>
 

@@ -1,6 +1,5 @@
 <template lang="">
-    <div>
-<el-form :inline="true" :model="searchForm">
+        <el-form :inline="true" :model="searchForm">
             <el-form-item label="学生ID">
               <el-input v-model="searchForm.name" placeholder="" style="width:150px;"></el-input>
             </el-form-item> 
@@ -8,23 +7,23 @@
               <el-button type="primary" style="margin-top: -20px;" @click="clear">重置</el-button>
               <el-button @click="dialogTableVisible=true" type="primary" style="margin-left :580px;margin-top: -25px;">批量删除</el-button>
           </el-form>
-         <el-table :data="tableData" border height="400" highlight-current-row>
-          <el-table-column type="selection" width="55" />
-            <el-table-column prop="student_id" label="学生ID" width="150"></el-table-column>
-            <el-table-column prop="student_name" label="学生姓名" width="150"></el-table-column>
-            <el-table-column prop="gender" label="性别" width="150"></el-table-column>
-                        <el-table-column prop="age" label="年龄" width="150"></el-table-column>
-            <el-table-column prop="department" label="学院" width="150"></el-table-column>
-            <el-table-column prop="major" label="专业" width="150"></el-table-column>
-            <el-table-column prop="gpa" label="绩点" width="150"></el-table-column>
-            <el-table-column prop="teacher_id" label="教师ID" width="150"></el-table-column>
-            <el-table-column prop="teacher_name" label="教师姓名" width="150"></el-table-column>
+              <el-table :data="tableData" border height="400" highlight-current-row @selection-change="count">
+                   <el-table-column type="selection" width="55" />
+            <el-table-column prop="grade_id" label="学生ID" width="150"></el-table-column>
+            <el-table-column prop="subject_name" label="学业成绩" width="150"></el-table-column>
+            <el-table-column prop="subject_rank" label="学位课数量" width="150"></el-table-column>
+            <el-table-column prop="subject_grade" label="思政课分数" width="150"></el-table-column>
+            <el-table-column prop="student_id" label="科研分数" width="150"></el-table-column>
+            <el-table-column prop="student_name" label="社会服务基本分" width="150"></el-table-column>、
+            <el-table-column prop="social_extra" label="社会服务附加分" width="150"></el-table-column>
+            <el-table-column prop="total" label="加权总分" width="150"></el-table-column>
             <el-table-column label="操作" width="250">
-                <el-button type="primary" size="">编辑</el-button>
+                <el-button type="primary" @click="dialogTableVisible=true" size="">编辑</el-button>
                 <el-button type="danger" size="">删除</el-button>
             </el-table-column>
         </el-table>
-<div style="margin-left:20px"><el-pagination
+
+   <div style="margin-left:20px"><el-pagination
       v-model:current-page="currentPage3"
       background
       :pager-count="pageSize3"
@@ -66,7 +65,6 @@
       </template>
 
 </el-dialog>
-</div>
 </template>
 <script>
 import requests from '@/util/requests';
@@ -178,11 +176,12 @@ export default {
     }
   },
   mounted() {
-    new axios({ method: 'get', url: 'http://www.localhost:8080/student', }).then((result) => {
+    new axios({ method: 'get', url: 'teacher', }).then((result) => {
       this.tableData = result.data.data
     }).catch((err) => {
       console.log(err)
     })
   }
+
 }
 </script>

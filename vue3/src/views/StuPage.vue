@@ -39,10 +39,8 @@
                 </el-icon>
                 <span>奖学金管理</span>
               </template>
-              <router-link to="/AdminPage/ScholarshipList"><el-menu-item
-                  index="3-1">奖学金申请名单</el-menu-item></router-link>
-              <router-link to="/AdminPage/ScholarshipApp"> <el-menu-item
-                  index="3-2">奖学金复审名单</el-menu-item></router-link>
+              <router-link to="/StuPage/StudentApp"><el-menu-item index="3-1">奖学金申请</el-menu-item></router-link>
+              <router-link to="/StuPage/AddScore"> <el-menu-item index="3-2">奖学金加分复审</el-menu-item></router-link>
             </el-sub-menu>
           </el-menu>
         </el-aside>
