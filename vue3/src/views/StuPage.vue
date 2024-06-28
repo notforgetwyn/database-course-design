@@ -40,7 +40,7 @@
                 <span>奖学金管理</span>
               </template>
               <router-link to="/StuPage/StudentApp"><el-menu-item index="3-1">奖学金申请</el-menu-item></router-link>
-              <router-link to="/StuPage/AddScore"> <el-menu-item index="3-2">奖学金加分复审</el-menu-item></router-link>
+              <router-link to="/StuPage/AddScore"> <el-menu-item index="3-2">奖学金加分申请</el-menu-item></router-link>
             </el-sub-menu>
           </el-menu>
         </el-aside>

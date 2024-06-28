@@ -53,6 +53,12 @@
 <el-descriptions-item label="extra_info" label-align="center" align="center">
     123
 </el-descriptions-item>
+<el-descriptions-item label="extra_info" label-align="center" align="center">
+    123
+</el-descriptions-item>
+<el-descriptions-item label="extra_info" label-align="center" align="center">
+    123
+</el-descriptions-item>
 
 </el-descriptions>
 </el-col>
