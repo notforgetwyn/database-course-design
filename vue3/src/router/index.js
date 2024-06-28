@@ -104,15 +104,18 @@ const routes = [
       },
     ],
   },
-  {
-    path: "/",
-    redirect: "/StuPage",
-  },
 ];
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+});
+router.beforeEach((to, from, next) => {
+  if (to.path == "/LogPage") return next();
+  const token = localStorage.getItem("token");
+  const ID = localStorage.getItem("id");
+  if (!token && !ID) return next("/LogPage");
+  next();
 });
 
 export default router;

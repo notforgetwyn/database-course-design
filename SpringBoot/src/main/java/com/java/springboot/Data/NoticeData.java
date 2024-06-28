@@ -1,6 +1,7 @@
 package com.java.springboot.Data;
 
 import cn.hutool.json.JSONObject;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -16,7 +17,7 @@ import java.time.LocalDateTime;
 
 @TableName(value = "notices")
 public class NoticeData {
-    @TableId(value="notice_id")
+    @TableId(value="notice_id", type= IdType.AUTO)
     private int notice_id;
     @TableField(value="title")
     private String title;

@@ -3,15 +3,14 @@
     <div class="login-container">
       <div class="login-header">奖学金管理系统</div>
       <el-form :model="form" :rules="rules" ref="loginForm" label-width="50px">
-        <el-form-item class="login-input" label="学号" prop="username">
-          <el-input v-model="form.username" placeholder=""></el-input>
+        <el-form-item class="login-input" label="学号" prop="ID">
+          <el-input v-model="form.ID" placeholder=""></el-input>
         </el-form-item>
         <el-form-item class="login-input" label="密码" prop="password">
           <el-input type="password" v-model="form.password" placeholder=""></el-input>
         </el-form-item>
         <el-form-item>
-          <router-link to="/AdminPage" class='login-button1'> <el-button class="login-button"
-              type="primary">登录</el-button></router-link>
+          <el-button class="login-button" type="primary" @click="Login">登录</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -20,25 +19,68 @@
 </template>
 
 <script>
-
+import requests from '@/util/requests';
 export default {
   data() {
     return {
       form: {
-        userName: "",
-        passwd: "",
+        ID: "",
+        password: "",
       },
-      checked: true,
       rules: {
-        username: [
-          { required: true, message: "请输入学号", trigger: "blur" }
+        ID: [
+          { required: true, message: "请输入正确的学号", trigger: "blur" },
         ],
         password: [
-          { required: true, message: "请输入密码", trigger: "blur" }
+          { required: true, message: "请输入正确的密码", trigger: "blur" }
         ]
       }
     };
-  }
+
+  }, methods: {
+    Login() {
+      this.$refs.loginForm.validate((valid => {
+        if (!valid) {
+          this.$message(
+            {
+              type: "error",
+              message: "请输入格式正确的账号和密码"
+            }
+          )
+        }
+        else {
+          requests.get("user", this.form).then(
+            result => {
+              console.log(this.form.ID)
+              console.log(result.data)
+              if (result.data.code !== 200)
+                this.$message.error(
+                  {
+                    message: "账号或者密码错误"
+                  })
+              else {
+                localStorage.setItem("token", result.data.data.token)
+                if (result.data.data.role === "teacher") {
+                  localStorage.setItem("id", result.data.data.id)
+                  this.$router.push("/AdminPage")
+                }
+                if (result.data.data.role === "student") {
+                  localStorage.setItem("id", result.data.data.id)
+                  this.$router.push("/StuPage")
+                }
+                if (result.data.data.role === "admin") {
+                  localStorage.setItem("id", result.data.data.id)
+                  this.$router.push("/TeacherPage")
+                }
+              }
+            }
+          )
+        }
+      }
+      )
+      )
+    }
+  },
 }
 </script>
 <style scoped>

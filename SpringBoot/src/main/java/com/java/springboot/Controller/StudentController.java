@@ -16,7 +16,10 @@ public class StudentController {
     StudentSeverimp Studentseverimp;
 @GetMapping("/student")
     public Result GetDataAll() {
-       List<StudentData> result= Studentseverimp.list();
-    return new Result();
+    if(!Studentseverimp.list().isEmpty())
+ return new Result().success( 200,"success",Studentseverimp.list());
+    else {
+        return new Result().success( 200,"error",null);
+    }
     }
 }

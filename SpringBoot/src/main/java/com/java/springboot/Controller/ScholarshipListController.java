@@ -14,8 +14,11 @@ public class ScholarshipListController {
     ScholarshipListSeverimp ScholarshiplistSeverimp;
 @GetMapping("/ScholarshipList")
     public Result GetDataAll() {
-       List<ScholarshipListData> result= ScholarshiplistSeverimp.list();
-    return new Result();
+    if(!ScholarshiplistSeverimp.list().isEmpty())
+ return new Result().success( 200,"success",ScholarshiplistSeverimp.list());
+    else {
+        return new Result().success( 200,"error",null);
+    }
     }
 }
 

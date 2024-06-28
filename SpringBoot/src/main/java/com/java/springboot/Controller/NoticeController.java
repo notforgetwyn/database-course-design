@@ -15,8 +15,11 @@ public class NoticeController {
     NoticeSeverimp Noticesever;
 @GetMapping("/Notice")
     public Result GetDataAll() {
-       List<NoticeData> result= Noticesever.list();
-    return new Result();
+    if(!Noticesever.list().isEmpty())
+ return new Result().success( 200,"success",Noticesever.list());
+    else {
+        return new Result().success( 200,"error",null);
+    }
     }
 }
 

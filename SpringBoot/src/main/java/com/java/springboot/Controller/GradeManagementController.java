@@ -15,8 +15,11 @@ public class GradeManagementController {
     GradeManagementSeverimp GrademanagementSeverimp;
 @GetMapping("/Grade")
     public Result GetDataAll() {
-       List<GradeManagementData> result= GrademanagementSeverimp.list();
-    return new Result();
+    if(!GrademanagementSeverimp.list().isEmpty())
+ return new Result().success( 200,"success",GrademanagementSeverimp.list());
+    else {
+        return new Result().success( 200,"error",null);
+    }
     }
 }
 

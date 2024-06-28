@@ -1,6 +1,7 @@
 package com.java.springboot.Data;
 
 import cn.hutool.json.JSONObject;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -16,7 +17,7 @@ import java.time.LocalDateTime;
 
 @TableName(value = "student")
 public class StudentData {
-    @TableId(value="student_id")
+    @TableId(value="student_id", type= IdType.AUTO)
     private int student_id;
     @TableField(value="student_name")
     private String student_name;
@@ -32,10 +33,6 @@ public class StudentData {
     private double gpa;
     @TableField(value="teacher_id")
     private int teacher_id;
-    @TableField(value="username")
-        private String username;
-    @TableField(value="password")
-    private String password;
     @TableField(value="extra_info")
     private String extra_info;
     @TableField(value="teacher_name")

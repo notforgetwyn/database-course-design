@@ -1,5 +1,6 @@
 package com.java.springboot.Data;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -13,7 +14,7 @@ import lombok.NoArgsConstructor;
 
 @TableName(value = "grademanagement")
 public class GradeManagementData {
-    @TableId(value="grade_id")
+    @TableId(value="grade_id", type= IdType.AUTO)
     private int grade_id ;
     @TableField(value="subject_name")
     private String subject_name;

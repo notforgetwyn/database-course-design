@@ -13,9 +13,18 @@ public class Result {
     private int Code;
     private String Message;
     private Object Data;
-    public Result Success(Object result)
+    public Result success(int Code ,String Message,Object Data)
     {
-        return new Result(1,"success",result);
+        this.Code=Code;
+        this.Message=Message;
+        this.Data=Data;
+       return this;
     }
-
+ public Result error(int Code ,String Message,Object Data)
+    {
+         this.Code=Code;
+        this.Message=Message;
+        this.Data=Data;
+       return this;
+    }
 }

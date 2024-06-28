@@ -14,9 +14,12 @@ public class AdminController {
     AdminSeverimp    Adminseverimp;
 @GetMapping("/Admin")
     public Result GetDataAll() {
-       List<AdminData> result= Adminseverimp.list();
-    return new Result.Success(result);
+    if(!Adminseverimp.list().isEmpty())
+ return new Result().success( 200,"success",Adminseverimp.list());
+    else {
+        return new Result().success( 200,"error",null);
+    }
+}
 
     }
 
-}
