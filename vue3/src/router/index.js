@@ -89,11 +89,41 @@ const routes = [
       },
     ],
   },
+  {
+    path: "/",
+    redirect: "/StuPage",
+  },
 ];
-
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
 });
-
+router.beforeEach((to, from, next) => {
+  if (
+    to.path.includes("/TeacherPage") &&
+    localStorage.getItem("role") != "teacher"
+  ) {
+    console.log(localStorage.getItem("role"));
+    return next("/LogPage");
+  }
+  if (
+    to.path.includes("/StuPage") &&
+    localStorage.getItem("role") != "student"
+  ) {
+    console.log(localStorage.getItem("role"));
+    return next("/LogPage");
+  }
+  if (
+    to.path.includes("/AdminPage") &&
+    localStorage.getItem("role") != "admin"
+  ) {
+    console.log(localStorage.getItem("role"));
+    return next("/LogPage");
+  }
+  if (to.path == "/LogPage") return next();
+  const token = localStorage.getItem("token");
+  const ID = localStorage.getItem("id");
+  if (!token || !ID) return next("/LogPage");
+  next();
+});
 export default router;

@@ -17,18 +17,11 @@ import java.time.LocalDateTime;
 
 @TableName(value = "teacher")
 public class TeacherData {
-    @TableId(value="teacher_id", type= IdType.AUTO)
-    private int teacher_id;
-    @TableField(value="teacher_name")
-    private String teacher_name;
-    @TableField(value="gender")
+    @TableId(value="ID", type= IdType.INPUT)
+    private int ID;
+    private String teacherName;
     private String gender;
-    @TableField(value="age")
     private int age;
-    @TableField(value="department")
     private String department;
-    @TableField(value="extra_info")
-    private String extra_info;
-    @TableField(value="major")
-        private String major;
+    private String major;
 }

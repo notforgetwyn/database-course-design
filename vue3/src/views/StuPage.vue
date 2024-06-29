@@ -3,12 +3,18 @@
     <el-container>
       <el-header>
         <el-icon>
-          <Operation />
+          <el-text style="font-size:48px;color: #EBEDF0;margin-left :205px;">WEICOME</el-text>
         </el-icon>
-        <div>
-          <el-avatar shape="square" :fit="fit" :icon="UserFilled" />
-          <el-text style="font-size:48px;color: #EBEDF0;">{{ username }}</el-text>
-        </div>
+        <el-dropdown @command="handleCommand">
+          <span style="font-size:20px;  color: #fff;">
+            退出登录<el-icon class=" el-icon--right"><arrow-down /></el-icon>
+          </span>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item command="a">退出登录</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
       </el-header>
       <el-container>
         <el-aside width="200px">
@@ -40,7 +46,6 @@
                 <span>奖学金管理</span>
               </template>
               <router-link to="/StuPage/StudentApp"><el-menu-item index="3-1">奖学金申请</el-menu-item></router-link>
-              <router-link to="/StuPage/AddScore"> <el-menu-item index="3-2">奖学金加分申请</el-menu-item></router-link>
             </el-sub-menu>
           </el-menu>
         </el-aside>
@@ -53,7 +58,26 @@
 </template>
 
 <script>
-
+export default {
+  data() {
+    return {
+      username: "123",
+      tableData: [],
+      searchForm: {
+        name: "",
+        gender: "",
+        entrydate: []
+      }
+    };
+  },
+  methods: {
+    handleCommand() {
+      localStorage.removeItem("token")
+      localStorage.removeItem("id")
+      this.$router.push("/LogPage")
+    }
+  },
+}
 </script>
 <style scoped>
 .el-header {

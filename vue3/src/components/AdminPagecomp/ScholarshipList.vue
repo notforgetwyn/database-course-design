@@ -1,174 +1,202 @@
 <template lang="">
-    <div>
-               <el-form :inline="true" :model="searchForm">
-            <el-form-item label="学生ID">
+        <el-form :inline="true" :model="searchForm">
+            <el-form-item label="申请ID">
               <el-input v-model="searchForm.name" placeholder="" style="width:150px;"></el-input>
             </el-form-item> 
             <el-button type="primary" style="margin-top: -20px;" @click="changed">查询</el-button>
               <el-button type="primary" style="margin-top: -20px;" @click="clear">重置</el-button>
-              <el-button @click="dialogTableVisible=true" type="primary" style="margin-left :580px;margin-top: -25px;">批量删除</el-button>
+              <el-button type="primary" style="margin-left :530px;margin-top: -25px;" @click="open">新增</el-button>
+              <el-button @click="mutipdele" type="primary" style="margin-top: -25px;">批量删除</el-button>
           </el-form>
-         <el-table :data="tableData" border height="400" highlight-current-row>
-          <el-table-column type="selection" width="55" />
-            <el-table-column prop="scholarship_id" label="奖学金名单id" width="150"></el-table-column>
-            <el-table-column prop="scholarship_name" label="奖学金名称" width="150"></el-table-column>
-            <el-table-column prop="scholarship_type" label="奖学金类型" width="150"></el-table-column>
-            <el-table-column prop="scholarship_level" label="奖学金等级" width="150"></el-table-column>
-            <el-table-column prop="student_id" label="学生学号" width="150"></el-table-column>
-            <el-table-column prop="student_name" label="学生姓名" width="150"></el-table-column>
+              <el-table :data="tableData" border height="450" highlight-current-row @selection-change="count">
+                   <el-table-column type="selection" width="55" />
+            <el-table-column prop="id" label="申请ID" width="150"></el-table-column>
+            <el-table-column prop="scholarshipName" label="奖学金名字" width="150"></el-table-column>
+            <el-table-column prop="scholarshipType" label="奖学金类型" width="150"></el-table-column>
+            <el-table-column prop="applicationMaterials" label="申请材料" width="150"></el-table-column>
+            <el-table-column prop="studentId" label="学生ID" width="150"></el-table-column>
+            <el-table-column prop="studentName" label="学生姓名" width="150"></el-table-column>、
+            <el-table-column prop="teacherApproval" label="教师批准" width="150"></el-table-column>
+            <el-table-column prop="createTime" label="创建时间" width="150"></el-table-column>
+          <el-table-column prop="updateTime" label="更改时间" width="150"></el-table-column>
             <el-table-column label="操作" width="250">
-                <el-button type="primary" size="">编辑</el-button>
-                <el-button type="danger" size="">删除</el-button>
-            </el-table-column>
-        </el-table>
- 
-           <div style="margin-left:20px"><el-pagination
-      v-model:current-page="currentPage3"
-      background
-      :pager-count="pageSize3"
-      layout="prev, pager, next, jumper"
-      :total="total"
-      @current-change="handleSizeChange"
-    /></div>  
-      
-<el-dialog v-model="dialogTableVisible" title="编辑" width="750px"  center>
-<el-form :inline="true" :model="dialogData"  ref="loginForm" label-width="120px">
-        <el-form-item class="login-input" label="学生ID" >
-          <el-input v-model="dialogData.name" placeholder=""></el-input>
-        </el-form-item>
-        <el-form-item class="login-input" label="学业成绩">
-          <el-input v-model="dialogData.region"></el-input>
-        </el-form-item>
-        <el-form-item class="login-input" label="学位课数量">
-          <el-input v-model="dialogData.date1"></el-input>
-        </el-form-item>
-        <el-form-item class="login-input" label="思政课分数">
-          <el-input v-model="dialogData.date2"></el-input>
-        </el-form-item>
-        <el-form-item class="login-input" label="科研分数">
-          <el-input v-model="dialogData.delivery"></el-input>
-        </el-form-item>
-        <el-form-item class="login-input" label="社会服务基本分">
-          <el-input v-model="dialogData.type"></el-input>
-        </el-form-item>
-        <el-form-item class="login-input" label="社会服务附加分">
-          <el-input v-model="dialogData.resource"></el-input>
-        </el-form-item>
-        <el-form-item class="login-input" label="加权总分">
-          <el-input v-model="dialogData.desc" disable></el-input>
-        </el-form-item>
-      </el-form>
-      <template #footer>
+              <template v-slot="scope">
+                    <el-button type="primary" @click="open(scope.row.id)" >编辑</el-button>
+                <el-button @click="dele(scope.row.id)" type="danger">删除</el-button>
+              </template>
+</el-table-column>
+</el-table>
+
+
+
+<el-dialog v-model="dialogTableVisible" title="编辑" width="750px" center>
+  <el-form :rules="rules" ref="loginForm" :inline="true" :model="dialogData" label-width="120px">
+    <el-form-item class="login-input" label="申请ID" prop="id">
+      <el-input v-model="dialogData.id" placeholder=""></el-input>
+    </el-form-item>
+    <el-form-item class="login-input" label="奖学金名字">
+      <el-input v-model="dialogData.scholarshipName" autocomplete="off"></el-input>
+    </el-form-item>
+    <el-form-item class="login-input" label="奖学金类型">
+      <el-input v-model="dialogData.scholarshipType"></el-input>
+    </el-form-item>
+    <el-form-item class="login-input" label="申请材料">
+      <el-input v-model="dialogData.applicationMaterials"></el-input>
+    </el-form-item>
+    <el-form-item class="login-input" label="学生ID">
+      <el-input v-model="dialogData.studentId"></el-input>
+    </el-form-item>
+    <el-form-item class="login-input" label="学生姓名">
+      <el-input v-model="dialogData.studentName"></el-input>
+    </el-form-item>
+    <el-form-item class="login-input" label="教师批准">
+      <el-input v-model="dialogData.teacherApproval"></el-input>
+    </el-form-item>
+    <el-form-item class="login-input" label="创建时间">
+      <el-input v-model="dialogData.createdAt"></el-input>
+    </el-form-item>
+    <el-form-item class="login-input" label="更改时间">
+      <el-input v-model="dialogData.updatedAt"></el-input>
+    </el-form-item>
+    <el-form-item class="login-input" label="补充">
+      <el-input v-model="dialogData.updatedAt"></el-input>
+    </el-form-item>
+  </el-form>
+  <template #footer>
+            <el-button type="primary" @click="submit">确 定</el-button>
         <el-button type="primary" @click="cancel">取 消</el-button>
-        <el-button type="primary" @click="submit">确 定</el-button>
+
       </template>
 
 </el-dialog>
-</div>
 </template>
 <script>
 import requests from '@/util/requests';
-import axios from 'axios';
 export default {
   data() {
     return {
       dialogTableVisible: false,
       tableData: [],
       searchForm: {
-        name: "",
+        name: ""
       },
       mutip: [],
       total: 500,
       currentPage3: 1,
       pageSize3: 15,
-      dialogData:
-      {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: '',
-        type: '',
-        resource: '',
-        desc: '',
+      dialogData: {
+        id: '',
+        scholarshipName: '',
+        scholarshipType: '',
+        applicationMaterials: '',
+        studentId: '',
+        studentName: '',
+        teacherApproval: '',
+        createTime: '',
+        updateTime: ''
+      },
+      rules: {
+        id: [
+          { required: true, message: "学号", trigger: "blur" },
+        ]
       }
     };
   },
   methods: {
-    dele() {
-      requests.get('Grade', this.num).then(result => {
-        if (result.data.code === 200) {
-          this.tableData = result.data;
-          this.$message.success(result.data.Message)
-        }
-        else {
-          this.$message.error(result.data.Message)
-        }
-      })
-
+    open() {
+      this.dialogTableVisible = true;
+      this.dialogData = {};
     },
-    mutipdele() {
-      const num = this.mutip.map(v => v.grade_id)
-      requests.get('Grade', num).then(result => {
-        if (result.data.code === 200) {
-          this.tableData = result.data;
-          this.$message.success(result.data.Message)
-        }
-        else {
-          this.$message.error(result.data.Message)
-        }
-      })
-    },
-    count(val) {
-      this.mutip = val
-    },
-    handleSizeChange() {
-      requests.get("Grade", {
+    dele(num) {
+      requests.get("ScholarshipList/del", {
         params: {
-          grade_id: this.currentPage3
+          grade_id: num
         }
       }).then(result => {
         if (result.data.code === 200) {
-          this.tableData = result.data;
-          this.$message.success(result.data.Message)
+          this.tableData = result.data.data;
+          this.$message.success(result.data.message)
         }
         else {
-          this.$message.error(result.data.Message)
+          this.$message.error(result.data.message)
+        }
+      }
+      )
+
+    },
+    mutipdele() {
+      let num = this.mutip.map(v => v.id)
+      if (num == 0) return;
+      requests.post("ScholarshipList/dels", num).then(result => {
+        if (result.data.code === 200) {
+          this.tableData = result.data.data;
+          this.$message.success(result.data.message)
+        }
+        else {
+          this.$message.error(result.data.message)
         }
       }
       )
     },
+    count(val) {
+      this.mutip = val
+    },
     changed() {
-      requests.get("Grade", {
+      if (this.searchForm.name == 0) return
+      requests.get("ScholarshipList/one", {
         params: {
           grade_id: this.searchForm.name
         }
       }).then(result => {
         if (result.data.code === 200) {
-          this.tableData = result.data;
-          this.$message.success(result.data.Message)
+          this.tableData = result.data.data;
+          if (result.data.message == "error")
+            this.$message.error(result.data.message)
+          else
+            this.$message.success(result.data.message)
+          console.log(result.data.message)
         }
         else {
-          this.$message.error(result.data.Message)
+          this.$message.error(result.data.message)
         }
       }
       )
     },
     clear() {
       this.searchForm = {};
-    },
-    submit() {
-      requests.get('Grade', this.dialogData).then(result => {
-        if (result.data.code === 200) {
-          this.tableData = result.data;
-          this.$message.success("提交成功")
+      requests(
+        {
+          method: 'get',
+          url: 'ScholarshipList'
         }
-        else {
-          this.$message.error("提交失败，请联系管理员")
-        }
-        this.dialogTableVisible = false;
+      ).then(result => {
+        this.tableData = result.data.data;
       })
+    },
 
+    submit() {
+      this.$refs.loginForm.validate((valid => {
+        if (!valid) {
+          this.$message(
+            {
+              type: "error",
+              message: "请输入格式正确的账号和密码"
+            }
+          )
+        } else {
+          requests.post('Grade', this.dialogData).then(result => {
+            if (result.data.code === 200) {
+              this.tableData = result.data.data;
+              this.$message.success("提交成功")
+            }
+            else {
+              this.$message.error("提交失败，请联系管理员")
+            }
+            this.dialogTableVisible = false;
+
+          })
+        }
+      }))
     },
     cancel() {
       this.dialogTableVisible = false;
@@ -176,11 +204,15 @@ export default {
     }
   },
   mounted() {
-    new axios({ method: 'get', url: 'http://www.localhost:8080/ScholarshipList', }).then((result) => {
-      this.tableData = result.data.data
-    }).catch((err) => {
-      console.log(err)
+    requests(
+      {
+        method: 'get',
+        url: 'ScholarshipList'
+      }
+    ).then(result => {
+      this.tableData = result.data.data;
     })
   }
+
 }
 </script>

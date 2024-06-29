@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @TableName(value = "admin")
 public class AdminData {
-    @TableId(value="admin_id", type= IdType.INPUT)
-    private int admin_id ;
+     @TableId(value="ID")
+    private int ID;
     @TableField(value="username")
     private String username;
    @TableField(value="password")

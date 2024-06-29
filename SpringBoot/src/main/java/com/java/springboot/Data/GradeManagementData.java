@@ -14,18 +14,13 @@ import lombok.NoArgsConstructor;
 
 @TableName(value = "grademanagement")
 public class GradeManagementData {
-    @TableId(value="grade_id", type= IdType.AUTO)
-    private int grade_id ;
-    @TableField(value="subject_name")
-    private String subject_name;
-    @TableField(value="subject_rank")
-    private int subject_rank;
-    @TableField(value="subject_grade")
-    private double subject_grade;
-    @TableField(value="student_id")
-    private int student_id;
-    @TableField(value="student_name")
-    private String student_name;
-    @TableField(value="extra_info")
-    private String extra_info;
+    @TableId(value="ID", type= IdType.INPUT)
+    private int ID;
+    private int subjectName;
+    private int subjectRank;
+    private int subjectGrade;
+    private int studentId;
+    private int studentName;
+    private int total;
+      private int socialExtra;
 }

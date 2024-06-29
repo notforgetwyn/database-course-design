@@ -1,14 +1,11 @@
 package com.java.springboot.Controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.java.springboot.Data.LoginData;
 import com.java.springboot.Data.Result;
 import com.java.springboot.Data.UserData;
-import com.java.springboot.server.TeacherSeverimp;
 import com.java.springboot.server.UserSeverimp;
 import com.java.springboot.util.Jwt;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.alibaba.fastjson.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -32,7 +29,8 @@ public class UserController {
             claims.put("name", object.getID());
             claims.put("username", object.getPassword());
             String jwt = Jwt.CreatedJwt(claims);
-            return new Result().success(200, "success", jwt);
+            ListID.get(0).setToken(jwt);
+            return new Result().success(200, "success",ListID.get(0));
         }
 
     }

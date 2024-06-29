@@ -17,16 +17,13 @@ import java.time.LocalDateTime;
 
 @TableName(value = "notices")
 public class NoticeData {
-    @TableId(value="notice_id", type= IdType.AUTO)
-    private int notice_id;
-    @TableField(value="title")
+    @TableId(value="ID", type= IdType.INPUT)
+    private int ID;
     private String title;
-    @TableField(value="content")
     private String content;
-    @TableField(value="publish_date")
-    private LocalDateTime publish_date;
-    @TableField(value="attachment")
+    private LocalDateTime publishDate;
     private String attachment;
-    @TableField(value="view_count")
-    private int view_count;
+    private int viewCount;
+    private String createdAt;
+    private String updatedAt;
 }

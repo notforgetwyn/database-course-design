@@ -49,10 +49,17 @@ export default {
           )
         }
         else {
-          requests.get("user", this.form).then(
+          requests(
+            {
+              method: 'get',
+              url: 'user',
+              params: {
+                ID: this.form.ID,
+                password: this.form.password
+              }
+            }
+          ).then(
             result => {
-              console.log(this.form.ID)
-              console.log(result.data)
               if (result.data.code !== 200)
                 this.$message.error(
                   {
@@ -60,17 +67,20 @@ export default {
                   })
               else {
                 localStorage.setItem("token", result.data.data.token)
-                if (result.data.data.role === "teacher") {
+                if (result.data.data.role == "teacher") {
                   localStorage.setItem("id", result.data.data.id)
-                  this.$router.push("/AdminPage")
+                  localStorage.setItem("role", result.data.data.role)
+                  this.$router.push("/TeacherPage")
                 }
-                if (result.data.data.role === "student") {
+                if (result.data.data.role == "student") {
                   localStorage.setItem("id", result.data.data.id)
+                  localStorage.setItem("role", result.data.data.role)
                   this.$router.push("/StuPage")
                 }
-                if (result.data.data.role === "admin") {
+                if (result.data.data.role == "admin") {
                   localStorage.setItem("id", result.data.data.id)
-                  this.$router.push("/TeacherPage")
+                  localStorage.setItem("role", result.data.data.role)
+                  this.$router.push("/AdminPage")
                 }
               }
             }
@@ -80,7 +90,7 @@ export default {
       )
       )
     }
-  },
+  }
 }
 </script>
 <style scoped>
@@ -121,8 +131,9 @@ export default {
 }
 
 .login-button {
-  width: 25%;
-  padding: 0.8rem;
+  margin-left: 60px;
+  width: 50%;
+  padding: 1rem;
   background: #007BFF;
   border: none;
   border-radius: 5px;

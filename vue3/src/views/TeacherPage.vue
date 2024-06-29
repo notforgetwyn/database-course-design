@@ -3,12 +3,18 @@
     <el-container>
       <el-header>
         <el-icon>
-          <Operation />
+          <el-text style="font-size:48px;color: #EBEDF0;margin-left :205px;">WEICOME</el-text>
         </el-icon>
-        <div>
-          <el-avatar shape="square" :fit="fit" :icon="UserFilled" />
-          <el-text style="font-size:48px;color: #EBEDF0;">{{ username }}</el-text>
-        </div>
+        <el-dropdown @command="handleCommand">
+          <span style="font-size:20px;  color: #fff;">
+            退出登录<el-icon class=" el-icon--right"><arrow-down /></el-icon>
+          </span>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item command="a">退出登录</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
       </el-header>
       <el-container>
         <el-aside width="200px">
@@ -39,7 +45,6 @@
                 <span>奖学金管理</span>
               </template>
               <router-link to="/TeacherPage/ScholarshipApp"><el-menu-item index="4-1">奖学金项目</el-menu-item></router-link>
-              <router-link to="/TeacherPage/StudentApp"> <el-menu-item index="4-2">奖学金名单</el-menu-item></router-link>
             </el-sub-menu>
           </el-menu>
 
@@ -53,7 +58,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 export default {
   data() {
     return {
@@ -67,25 +71,12 @@ export default {
     };
   },
   methods: {
-    onSubmit() {
-      new axios({
-        method: 'get',
-        url: 'http://www.localhost:8080/Notice',
-      }).then((result) => {
-        this.tableData = result.data.data
-      }).catch((err) => {
-        console.log(err)
-      })
+    handleCommand() {
+      localStorage.removeItem("token")
+      localStorage.removeItem("id")
+      this.$router.push("/LogPage")
     }
   },
-  mounted() {
-    new axios({ method: 'get', url: 'http://www.localhost:8080/Notice', }).then((result) => {
-      console.log(result.data.data)
-      this.tableData = result.data.data
-    }).catch((err) => {
-      console.log(err)
-    })
-  }
 }
 </script>
 <style scoped>

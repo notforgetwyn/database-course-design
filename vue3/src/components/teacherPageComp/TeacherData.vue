@@ -3,61 +3,61 @@
     <el-col :span="16">
          <el-descriptions  title="学生信息" :column="2" border size='large' >
             <template #extra>
-      <el-button type="primary" size='large'>编辑</el-button>
+      <el-button type="primary" size='large' @click="open">编辑</el-button>
     </template>
 <el-descriptions-item label="学生ID" label-align="center" align="center">
-    123
+    {{id}}
 </el-descriptions-item>
 <el-descriptions-item label="学生姓名" label-align="center" align="center">
-    123
+    {{teacherName}}
 </el-descriptions-item>
-<el-descriptions-item label="年龄" label-align="center" align="center">
-    123
+<el-descriptions-item label="性别" label-align="center" align="center">
+    {{gender}}
 </el-descriptions-item>
 <el-descriptions-item label="学院" label-align="center" align="center">
-    123
+    {{department}}
 </el-descriptions-item>
 <el-descriptions-item label="专业" label-align="center" align="center">
-    123
+    {{major}}
 </el-descriptions-item>
-<el-descriptions-item label="绩点" label-align="center" align="center">
-    123
+<el-descriptions-item label="备注" label-align="center" align="center">
+    {{gpa}}
 </el-descriptions-item>
-<el-descriptions-item label="extra_info" label-align="center" align="center">
-    123
+<el-descriptions-item label="年龄" label-align="center" align="center">
+    {{age}}
 </el-descriptions-item>
-<el-descriptions-item label="extra_info" label-align="center" align="center">
-    123
+<el-descriptions-item label="备注" label-align="center" align="center">
+    {{teacherId}}
 </el-descriptions-item>
-<el-descriptions-item label="extra_info" label-align="center" align="center">
-    123
+<el-descriptions-item label="备注" label-align="center" align="center">
+    {{teacherName}}
 </el-descriptions-item>
-<el-descriptions-item label="extra_info" label-align="center" align="center">
-    123
+<el-descriptions-item label="备注" label-align="center" align="center">
+    {{id}}
 </el-descriptions-item>
-<el-descriptions-item label="extra_info" label-align="center" align="center">
-    123
+<el-descriptions-item label="备注" label-align="center" align="center">
+    {{id}}
 </el-descriptions-item>
-<el-descriptions-item label="extra_info" label-align="center" align="center">
-    123
+<el-descriptions-item label="备注" label-align="center" align="center">
+    {{id}}
 </el-descriptions-item>
-<el-descriptions-item label="extra_info" label-align="center" align="center">
-    123
+<el-descriptions-item label="备注" label-align="center" align="center">
+    {{id}}
 </el-descriptions-item>
-<el-descriptions-item label="extra_info" label-align="center" align="center">
-    123
+<el-descriptions-item label="备注" label-align="center" align="center">
+    {{id}}
 </el-descriptions-item>
-<el-descriptions-item label="extra_info" label-align="center" align="center">
-    123
+<el-descriptions-item label="备注" label-align="center" align="center">
+    {{id}}
 </el-descriptions-item>
-<el-descriptions-item label="extra_info" label-align="center" align="center">
-    123
+<el-descriptions-item label="备注" label-align="center" align="center">
+    {{id}}
 </el-descriptions-item>
-<el-descriptions-item label="extra_info" label-align="center" align="center">
-    123
+<el-descriptions-item label="备注" label-align="center" align="center">
+    {{id}}
 </el-descriptions-item>
-<el-descriptions-item label="extra_info" label-align="center" align="center">
-    123
+<el-descriptions-item label="备注" label-align="center" align="center">
+    {{id}}
 </el-descriptions-item>
 
 </el-descriptions>
@@ -68,108 +68,100 @@
 </el-row>
 
 
+<el-dialog v-model="dialogTableVisible" title="编辑" width="750px" center>
+    <el-form :inline="true" :model="dialogData" label-width="120px">
+        <el-form-item class="login-input" label="学生ID">
+            <el-input v-model="dialogData.id" placeholder=""></el-input>
+        </el-form-item>
+        <el-form-item class="login-input" label="学生姓名">
+            <el-input v-model="dialogData.teacherName" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item class="login-input" label="性别">
+            <el-input v-model="dialogData.gender"></el-input>
+        </el-form-item>
+        <el-form-item class="login-input" label="部门">
+            <el-input v-model="dialogData.department"></el-input>
+        </el-form-item>
+        <el-form-item class="login-input" label="专业">
+            <el-input v-model="dialogData.major"></el-input>
+        </el-form-item>
+        <el-form-item class="login-input" label="年龄">
+            <el-input v-model="dialogData.age"></el-input>
+        </el-form-item>
+        <el-form-item class="login-input" label="老师ID">
+            <el-input v-model="dialogData.teacherId"></el-input>
+        </el-form-item>
+        <el-form-item class="login-input" label="老师姓名">
+            <el-input v-model="dialogData.teacherName" disable></el-input>
+        </el-form-item>
+    </el-form>
+    <template #footer>
+            <el-button type="primary" @click="submit">确 定</el-button>
+        <el-button type="primary" @click="cancel">取 消</el-button>
+
+      </template>
+
+</el-dialog>
 </template>
 <script>
 import requests from '@/util/requests';
-import axios from 'axios';
 export default {
     data() {
         return {
             dialogTableVisible: false,
             tableData: [],
             searchForm: {
-                name: "",
+                name: ""
             },
             mutip: [],
-            total: 500,
+            teacherName: 500,
             currentPage3: 1,
             pageSize3: 15,
-            dialogData:
-            {
-                name: '',
-                region: '',
-                date1: '',
-                date2: '',
-                delivery: '',
-                type: '',
-                resource: '',
-                desc: '',
+            dialogData: {
+                id: '',
+                teacherName: '',
+                gender: '',
+                department: '',
+                major: '',
+                age: '',
             }
         };
     },
     methods: {
-        dele() {
-            requests.get('Grade', this.num).then(result => {
-                if (result.data.code === 200) {
-                    this.tableData = result.data;
-                    this.$message.success(result.data.Message)
-                }
-                else {
-                    this.$message.error(result.data.Message)
-                }
-            })
-
+        open2() {
+            this.dialogTableVisible = true;
+            this.dialogData = {};
         },
-        mutipdele() {
-            const num = this.mutip.map(v => v.grade_id)
-            requests.get('Grade', num).then(result => {
-                if (result.data.code === 200) {
-                    this.tableData = result.data;
-                    this.$message.success(result.data.Message)
-                }
-                else {
-                    this.$message.error(result.data.Message)
-                }
-            })
-        },
-        count(val) {
-            this.mutip = val
-        },
-        handleSizeChange() {
-            requests.get("Grade", {
+        open() {
+            this.dialogData = {};
+            requests.get("teacher/one", {
                 params: {
-                    grade_id: this.currentPage3
+                    grade_id: localStorage.getItem("id")
                 }
             }).then(result => {
                 if (result.data.code === 200) {
-                    this.tableData = result.data;
-                    this.$message.success(result.data.Message)
+                    console.log(this.dialogData)
+                    this.$message.success(result.data.message)
+                    console.log(result.data.message)
                 }
                 else {
-                    this.$message.error(result.data.Message)
+                    this.$message.error(result.data.message)
                 }
             }
             )
-        },
-        changed() {
-            requests.get("Grade", {
-                params: {
-                    grade_id: this.searchForm.name
-                }
-            }).then(result => {
-                if (result.data.code === 200) {
-                    this.tableData = result.data;
-                    this.$message.success(result.data.Message)
-                }
-                else {
-                    this.$message.error(result.data.Message)
-                }
-            }
-            )
-        },
-        clear() {
-            this.searchForm = {};
+            this.dialogTableVisible = true;
         },
         submit() {
-            requests.get('Grade', this.dialogData).then(result => {
+            requests.post('teacher', this.dialogData).then(result => {
                 if (result.data.code === 200) {
-                    this.tableData = result.data;
+                    this.tableData = result.data.data;
                     this.$message.success("提交成功")
                 }
                 else {
                     this.$message.error("提交失败，请联系管理员")
                 }
                 this.dialogTableVisible = false;
+                this.dialogData = {};
             })
 
         },
@@ -179,10 +171,17 @@ export default {
         }
     },
     mounted() {
-        new axios({ method: 'get', url: 'teacher', }).then((result) => {
-            this.tableData = result.data.data
-        }).catch((err) => {
-            console.log(err)
+        requests(
+            {
+                method: 'get',
+                url: 'teacher/one', params: {
+                    grade_id: localStorage.getItem("id")
+                }
+
+            }
+        ).then(result => {
+            this.dialogData = result.data.data;
+            console.log(this.dialogData)
         })
     }
 
